@@ -19,23 +19,23 @@ class Product
   end
 
   def gen_handle
-    @title = Faker::Commerce.product_name
+    @title = Faker::Commerce.unique.product_name
     return @title.downcase.gsub!(' ', '-')
   end
   def gen_title
     return @title
   end
   def gen_body
-    return Faker::Lorem.paragraph(1)
+    return [Faker::Books::Lovecraft.sentence, Faker::Books::CultureSeries.culture_ship + ".", Faker::Hipster.sentence, Faker::Books::CultureSeries.culture_ship + "."].shuffle.join(" ")
   end
   def gen_vendor
     return Faker::Company.name
   end
   def gen_type
-    return Faker::Commerce.department(1, true)
+    return Faker::Commerce.department(max: 1, fixed_amount: true)
   end
   def gen_tags
-    return Faker::Lorem.words.join(",")
+    return [Faker::Commerce.department(max: 1, fixed_amount: true),Faker::Commerce.department(max: 1, fixed_amount: true),Faker::Commerce.department(max: 1, fixed_amount: true)].join(",")
   end
   def gen_published
     return 'TRUE'
@@ -62,7 +62,7 @@ class Product
     return ''
   end
   def gen_variant_grams
-    return Faker::Number.between(20, 1000)
+    return Faker::Number.between(from: 20, to: 1000)
   end
   def gen_variant_inventory_tracker
     return ''
@@ -92,10 +92,10 @@ class Product
     return ''
   end
   def gen_image_src
-    return Faker::Placeholdit.image(size: "320x320")
+    return "https://source.unsplash.com/random/?#{["product", "technology", "packaging", "fashion"].sample} "
   end
   def gen_image_alt_text
-    return Faker::Lorem.sentence
+    return Faker::Books::CultureSeries.culture_ship
   end
   def gen_gift_card
     return 'FALSE'
@@ -122,7 +122,7 @@ class Product
     return @type
   end
   def gen_google_shopping_adwords_labels
-    return Faker::Lorem.sentence(3, true)
+    return Faker::Lorem.sentence(word_count: 3, supplemental: true)
   end
   def gen_google_shopping_condition
     return ['new', 'used'].sample
