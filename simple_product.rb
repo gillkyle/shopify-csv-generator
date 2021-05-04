@@ -55,10 +55,10 @@ class SimpleProduct < Product
     return Faker::Number.between(from: 20, to: 1000)
   end
   def gen_variant_price
-    return Faker::Commerce.price
+    return @parent_product.variant_price
   end
   def gen_variant_compare_at_price
-    return @parent_product.variant_price
+    return ''
   end
   def gen_image_src
     ''
