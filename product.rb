@@ -92,7 +92,7 @@ class Product
     return ''
   end
   def gen_image_src
-    return "https://source.unsplash.com/random/?#{["product", "technology", "packaging", "fashion"].sample} "
+    return "https://source.unsplash.com/random/?#{["product", "cutlery", "interior", "houseplant"].sample} "
   end
   def gen_image_alt_text
     return Faker::Books::CultureSeries.culture_ship
